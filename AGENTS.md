@@ -1,6 +1,6 @@
 # AGENTS.md
 
-This document serves as the **primary directive** for AI Agents and developers working on the **DnD Combat Manager**. Adherence to these guidelines is mandatory.
+This document serves as the **primary directive** for AI Agents and developers working on the **TTRPG Combat Manager**. Adherence to these guidelines is mandatory.
 
 ## 1. Core Philosophy & Workflow
 - **Plan-Driven Execution**: Work strictly from `docs/plans/implementation_plan.md`. 
@@ -11,10 +11,6 @@ This document serves as the **primary directive** for AI Agents and developers w
 - **Documentation First**: 
   - Before implementing a new module or feature, gather all requirements and document them in `docs/`.
   - Maintain a progress log in the documentation folder.
-- **No Backwards Compatibility**: 
-  - Remove legacy code immediately using `rm`. 
-  - Do not maintain intermediary versions. 
-  - Build for the final state.
 - **Silent Execution**: Avoid chat output other than necessary tool calls. Focus on the work.
 
 ## 2. Tech Stack & Tools
@@ -56,7 +52,7 @@ This document serves as the **primary directive** for AI Agents and developers w
 ### File Management
 - **File Size**: If a file or function is too large, **do not** trim whitespace to fix it. Extract code into separate, logical modules.
 
-## 5. Domain Specifics (DnD Combat Manager)
+## 5. Domain Specifics (TTRPG Combat Manager)
 - **Persistence**: State syncs to `localStorage` on every change.
 - **Heroes vs Monsters**: Distinct lifecycles (Heroes persist, Monsters wipe).
 - **Math Parser**: HP inputs support math Expressions (`-5+2`).

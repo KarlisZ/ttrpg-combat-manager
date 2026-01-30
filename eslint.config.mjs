@@ -21,6 +21,19 @@ const compat = new FlatCompat({
 });
 
 export default [
+    {
+        ignores: [
+            "**/dist/**",
+            "**/node_modules/**",
+            "**/.yarn/**",
+            "**/build/**",
+            "**/coverage/**",
+            "**/*.log",
+            ".eslintcache",
+            "eslint.config.mjs",
+            "vitest.config.ts",
+        ],
+    },
     // Bring in legacy shareable configs via compat so we can still use plugin: style strings
     ...fixupConfigRules(
         compat.extends(
@@ -35,15 +48,6 @@ export default [
         ),
     ),
     {
-        ignores: [
-            "**/dist/**",
-            "**/node_modules/**",
-            "**/.yarn/**",
-            "**/build/**",
-            "**/*.log",
-            ".eslintcache",
-            "eslint.config.mjs",
-        ],
         plugins: {
             react: fixupPluginRules(reactPlugin),
             "@typescript-eslint": fixupPluginRules(typescriptEslintPlugin),
@@ -59,7 +63,7 @@ export default [
             parserOptions: {
                 ecmaFeatures: { jsx: true },
                 projectService: {
-                    allowDefaultProject: ["*.js", "*.mjs"],
+                    allowDefaultProject: ["*.js", "*.mjs", "scripts/*.mjs"],
                     defaultProject: "./tsconfig.json",
                 },
                 tsconfigRootDir: __dirname,
@@ -129,6 +133,8 @@ export default [
                     leadingUnderscore: "allow",
                     trailingUnderscore: "allow",
                 },
+                { selector: "enumMember", format: ["UPPER_CASE"] },
+                { selector: "objectLiteralProperty", format: ["camelCase", "UPPER_CASE"] },
                 { selector: "typeLike", format: ["PascalCase"] },
                 {
                     selector: "variable",
@@ -188,6 +194,11 @@ export default [
                 ...globals.jest,
             },
         },
+        settings: {
+            react: {
+                version: "detect",
+            },
+        },
         rules: {
             "@typescript-eslint/explicit-member-accessibility": "off",
             "@typescript-eslint/consistent-type-imports": "off",
@@ -205,6 +216,18 @@ export default [
             "import/no-duplicates": "off",
             "react/no-array-index-key": "off",
             "no-implied-eval": "off",
+        },
+    },
+    {
+        files: ["scripts/**/*.mjs"],
+        languageOptions: {
+            globals: {
+                ...globals.node,
+            },
+        },
+        rules: {
+            "@typescript-eslint/naming-convention": "off",
+            "@typescript-eslint/no-magic-numbers": "off",
         },
     },
     prettierConfig,

@@ -18,7 +18,8 @@ build
 .env.test.local
 .env.production.local
 .devcontainer
-docs/
+.husky
+.vscode
 
 # Logs
 npm-debug.log*
