@@ -1,0 +1,1349 @@
+:root {
+  /* Primitive Palette - Outdoorsy Dark Theme */
+  --palette-sage-dark: #a3c9a0;
+  --palette-sage-light: #2c362c;
+  --palette-brown-dark: #d6bba8;
+  --palette-brown-light: #3b322c;
+  --palette-teal-dark: #9bcbc4;
+  --palette-teal-light: #253331;
+  
+  --palette-neutral-bg: #1a1d1c;
+  --palette-white: #242926;
+  --palette-text: #e6e8e6;
+  --palette-text-muted: #8b9991;
+  --palette-danger: #e57373;
+  --palette-warning: #ffb74d;
+  --palette-warning-bg: rgba(255, 183, 77, 0.15);
+  --palette-border: #3e4a44;
+
+  /* Theme: Semantic State Colors (Dead/Stone) */
+  --theme-dead-bg: #8a2c2c;
+  --theme-dead-content: #e6e8e6;
+  --theme-dead-accent: #5d2e2e;
+  
+  --theme-stone-bg: #4a504d;
+  --theme-stone-content: #ffffff;
+
+  /* Theme: Active Cell Accents (New) */
+  --theme-active-cell-bg: var(--theme-accent-container);
+  --theme-active-dead-bg: #af2828;
+
+  /* Theme: Active Role Colors (Unified) */
+  --theme-active-bg: #607d8b;
+  --theme-active-content: var(--theme-accent-content);
+  --theme-active-accent: var(--theme-accent-misc);
+  
+  /* Theme: Primary (Structural/Headers) */
+  --theme-primary-container: var(--palette-sage-light);
+  --theme-primary-content: var(--palette-text);
+  --theme-primary-misc: var(--palette-sage-dark);
+
+  /* Theme: Secondary (Controls/Inputs) */
+  --theme-secondary-container: var(--palette-brown-light);
+  --theme-secondary-content: var(--palette-text);
+  --theme-secondary-misc: var(--palette-brown-dark);
+
+  /* Theme: Accent (Active States/Highlights) */
+  --theme-accent-container: var(--palette-teal-dark);
+  --theme-accent-content: var(--palette-white);
+  --theme-accent-misc: var(--palette-sage-dark);
+
+  /* General Semantics */
+  --color-background: var(--palette-neutral-bg);
+  --color-surface: var(--palette-white);
+  --color-text: var(--palette-text);
+  --color-text-muted: var(--palette-text-muted);
+  --color-border: var(--palette-border);
+  --color-danger: var(--palette-danger);
+
+  /* Spacing */
+  --spacing-xs: 0.25rem; /* 4px */
+  --spacing-sm: 0.5rem;  /* 8px */
+  --spacing-md: 1rem;    /* 16px */
+  --spacing-lg: 1.5rem;  /* 24px */
+  --spacing-xl: 2rem;    /* 32px */
+
+  /* Typography */
+  --font-family-base: system-ui, -apple-system, sans-serif;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.25rem;
+  --font-size-xl: 1.5rem;
+  
+  --input-height: 1.75rem;
+}
+
+*:focus-visible {
+  outline: 0.125rem solid var(--theme-accent-misc);
+  outline-offset: 0.125rem;
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-text);
+  font-family: var(--font-family-base);
+  line-height: 1.5;
+  margin: 0;
+  padding: 0;
+}
+
+input, select, textarea {
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  border: 1px solid var(--theme-secondary-misc);
+}
+
+input:disabled, select:disabled, textarea:disabled {
+  background-color: var(--color-background);
+  color: var(--color-text-muted);
+  cursor: not-allowed;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 37.5rem) {
+  :root {
+      --spacing-md: 0.75rem; 
+      --spacing-lg: 1rem;
+  }
+}
+
+/* CommandBar */
+.command-bar {
+  padding: var(--spacing-sm) var(--spacing-md);
+  background-color: var(--theme-primary-container);
+  color: var(--theme-primary-content);
+  border-bottom: 1px solid var(--theme-primary-misc);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.command-bar__group {
+    display: flex;
+    gap: var(--spacing-sm);
+}
+
+.command-bar button {
+    background-color: var(--color-surface);
+    border: 1px solid var(--theme-primary-misc);
+    color: var(--theme-primary-content);
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    cursor: pointer;
+}
+
+.command-bar button:hover:not(:disabled) {
+    background-color: var(--theme-primary-misc);
+    color: var(--color-surface);
+}
+
+.command-bar button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.command-bar button.icon-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.25rem;
+}
+
+.command-bar button.command-bar__toggle--active {
+     background-color: var(--theme-accent-container);
+     color: var(--theme-accent-content);
+     font-weight: bold;
+     border-color: var(--theme-accent-misc);
+}
+
+/* Layout Controls */
+.layout-controls {
+    position: relative;
+    background-color: var(--theme-secondary-container);
+    border-top: 1px solid var(--theme-secondary-misc);
+    padding: var(--spacing-md);
+    margin-top: auto; /* Push to bottom if flex container allows */
+}
+
+/* SpawnControls */
+.spawn-controls {
+    /* Reset container styles as they now belong to layout-controls */
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    position: static; /* Let title position relative to layout-controls */
+    margin: 0;
+    padding: 0;
+    border: none;
+    background: transparent;
+}
+
+.spawn-controls__title {
+    position: absolute;
+    top: 0;
+    left: var(--spacing-md);
+    transform: translateY(-50%);
+    margin: 0;
+    padding: 0 0.25rem;
+    font-size: 0.75rem;
+    color: var(--theme-secondary-misc);
+    
+    /* Gradient to match the split background (body vs container) while hiding the border */
+    background: linear-gradient(to bottom, var(--color-background) 50%, var(--theme-secondary-container) 50%);
+    z-index: 1;
+    line-height: 1;
+}
+
+.spawn-controls__separator {
+    width: 100%;
+    margin: 0;
+    border: none;
+    border-top: 1px solid var(--theme-secondary-misc);
+    opacity: 0.5;
+}
+
+.spawn-controls__form {
+    display: flex;
+    gap: var(--spacing-md);
+    align-items: center;
+}
+
+.spawn-controls__group {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.spawn-controls__group input {
+    background-color: transparent;
+    border: 1px solid var(--theme-secondary-misc);
+    border-radius: 0.25rem;
+    padding: 0.6rem 0.5rem 0.4rem;
+    color: var(--theme-secondary-content);
+    font-size: 0.9rem;
+    width: 10rem;
+    transition: border-color 0.2s;
+}
+
+.spawn-controls__group input.spawn-controls__input-xs {
+    width: 4rem;
+    text-align: center;
+}
+
+.spawn-controls__group label {
+    position: absolute;
+    left: 0.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 0 0.25rem;
+    color: var(--palette-text-muted);
+    font-size: 0.85rem;
+    transition: all 0.2s ease-out;
+    pointer-events: none;
+    background-color: transparent;
+    white-space: nowrap;
+}
+
+/* Floating Label State */
+.spawn-controls__group input:focus + label,
+.spawn-controls__group input:not(:placeholder-shown) + label {
+    top: 0;
+    font-size: 0.75rem;
+    color: var(--theme-accent-misc);
+    background-color: var(--theme-secondary-container);
+    line-height: 1;
+}
+
+.spawn-controls__group input:focus {
+    border-color: var(--theme-accent-misc);
+    outline: none;
+}
+
+.spawn-controls button {
+    background-color: var(--color-surface);
+    border: 1px solid var(--theme-secondary-misc);
+    color: var(--theme-secondary-content);
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    font-weight: 500;
+    height: 100%;
+}
+
+.spawn-controls button:hover {
+     background-color: var(--theme-secondary-misc);
+     color: var(--color-surface);
+}
+
+/* StatusPicker */
+.status-picker {
+    position: relative;
+    display: inline-block;
+}
+
+.status-picker__toggle {
+    padding: 0 0.25rem;
+    font-size: 0.8rem;
+    cursor: pointer;
+    border: 1px solid var(--theme-secondary-misc);
+    background: var(--theme-secondary-container);
+    color: var(--theme-secondary-content);
+    border-radius: 0.25rem;
+}
+
+.status-picker__dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: var(--theme-secondary-container);
+    color: var(--theme-secondary-content);
+    border: 1px solid var(--theme-secondary-misc);
+    padding: 0.5rem;
+    box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,0.1);
+    border-radius: 0.25rem;
+    min-width: 12.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.status-picker__select {
+    width: 100%;
+    padding: 0.125rem;
+    border: 1px solid var(--theme-secondary-misc);
+    background-color: var(--color-surface);
+    border-radius: 0.125rem;
+}
+
+.status-picker__row {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.status-picker__label {
+    font-size: 0.8rem;
+}
+
+.status-picker__input-sm {
+     width: 3rem;
+     padding: 0.125rem;
+     border: 1px solid var(--theme-secondary-misc);
+     background-color: var(--color-surface);
+     border-radius: 0.125rem;
+}
+
+.status-picker__add-btn {
+     margin-top: 0.25rem;
+     cursor: pointer;
+}
+
+
+
+/* CombatTable */
+.combat-table__container {
+    width: 100%;
+    overflow-x: auto;
+    position: relative; /* For sticky context */
+    padding-bottom: var(--spacing-md); /* Scrollbar space */
+    scrollbar-width: thin;
+    scrollbar-color: var(--theme-secondary-misc) var(--palette-neutral-bg);
+}
+
+.combat-table__container::-webkit-scrollbar {
+    height: 0.75rem;
+    width: 0.75rem;
+}
+
+.combat-table__container::-webkit-scrollbar-track {
+    background: var(--palette-neutral-bg);
+}
+
+.combat-table__container::-webkit-scrollbar-thumb {
+    background-color: var(--theme-secondary-misc);
+    border-radius: 0.25rem;
+    border: 2px solid var(--palette-neutral-bg);
+}
+
+.combat-table__container::-webkit-scrollbar-thumb:hover {
+    background-color: var(--theme-accent-misc);
+}
+
+.combat-table {
+    width: max-content;
+    border-collapse: separate; /* Required for sticky to stick relative to borders */
+    border-spacing: 0; /* Remove gaps from separate collapse */
+    text-align: left;
+    white-space: nowrap;
+    table-layout: fixed; /* Allow explicit widths */
+
+    /* Centralized Column Layout Configuration */
+    --col-1-w: 2rem;    /* Delete */
+    --col-2-w: 3rem;  /* Order */
+    --col-3-w: 5rem;    /* Init / Mod (Merged) */
+    --col-4-w: 7rem;    /* Name */
+    --col-5-w: 7rem;    /* HP */
+    --col-round-w: 8rem;
+
+    /* Calculated Offsets for Sticky Columns */
+    --col-2-left: var(--col-1-w);
+    --col-3-left: calc(var(--col-1-w) + var(--col-2-w));
+    --col-4-left: calc(var(--col-1-w) + var(--col-2-w) + var(--col-3-w));
+    --col-5-left: calc(var(--col-1-w) + var(--col-2-w) + var(--col-3-w) + var(--col-4-w));
+}
+
+/* Base Cell Styling */
+.combat-table__th, .combat-row__cell {
+    padding: var(--spacing-sm);
+    box-sizing: border-box;
+    background-color: var(--color-surface); /* Default Opacity for all cells */
+    border-bottom: 1px solid var(--color-border);
+    vertical-align: middle;
+}
+
+.combat-table__thead .combat-table__th {
+    padding: var(--spacing-sm);
+    border-bottom: 2px solid var(--theme-primary-misc);
+    background-color: var(--theme-primary-container);
+    color: var(--theme-primary-content);
+    font-size: var(--font-size-sm);
+    position: sticky;
+    top: 0;
+    z-index: 100; /* Highest so headers always cover content */
+    vertical-align: middle;
+}
+
+/* Specific Column Widths & Sticky Positioning */
+
+/* Stick First 5 Columns to the Left */
+.combat-table__th:nth-child(-n+5),
+.combat-row__cell:nth-child(-n+5) {
+    position: sticky;
+    z-index: 50; 
+    background-color: var(--color-surface);
+    vertical-align: middle;
+}
+
+/* Header sticky cells need higher z-index to stay above body sticky cells */
+.combat-table__thead .combat-table__th:nth-child(-n+5) {
+    z-index: 150;
+    background-color: var(--theme-primary-container);
+}
+
+/* Column Width Definitions and Left Offsets - Centralized usage */
+
+.combat-table__th:nth-child(1), .combat-row__cell:nth-child(1) { 
+    width: var(--col-1-w); min-width: var(--col-1-w); max-width: var(--col-1-w); 
+    left: 0; 
+}
+.combat-table__th:nth-child(2), .combat-row__cell:nth-child(2) { 
+    width: var(--col-2-w); min-width: var(--col-2-w); max-width: var(--col-2-w); 
+    left: var(--col-2-left); 
+    text-align: center;
+}
+.combat-row__cell:nth-child(2) {
+    padding-left: 0; padding-right: 0; 
+}
+
+.combat-table__th:nth-child(3), .combat-row__cell:nth-child(3) { 
+    width: var(--col-3-w); min-width: var(--col-3-w); max-width: var(--col-3-w); 
+    left: var(--col-3-left);
+    text-align: center;
+}
+.combat-row__cell:nth-child(3) {
+    padding-left: 1px; padding-right: 1px;
+}
+
+.combat-table__th:nth-child(4), .combat-row__cell:nth-child(4) { 
+    width: var(--col-4-w); min-width: var(--col-4-w); max-width: var(--col-4-w); 
+    left: var(--col-4-left); 
+}
+
+/* Resizing Curr/Max to be smaller */
+.combat-table__th:nth-child(5), .combat-row__cell:nth-child(5) { 
+    width: var(--col-5-w); min-width: var(--col-5-w); max-width: var(--col-5-w); 
+    left: var(--col-5-left);
+    text-align: center;
+    border-right: 1px solid var(--theme-secondary-misc);
+    box-shadow: 4px 0 4px -2px rgba(0,0,0,0.2);
+    clip-path: inset(0px -10px 0px 0px);
+}
+
+/* Rounds Columns (Middle and onward) */
+.combat-table__th:nth-child(n+6), 
+.combat-row__cell:nth-child(n+6) {
+     width: var(--col-round-w);
+     min-width: var(--col-round-w);
+     vertical-align: middle;
+}
+
+
+
+/* Row Background Colors: MUST apply to cells to override sticky background */
+
+/* Active Row (Unified) */
+.combat-row--active .combat-row__cell {
+    background-color: var(--theme-active-bg);
+    color: var(--theme-active-content);
+    border-bottom: 1px solid var(--theme-active-accent);
+}
+
+/* Inactive Row (Default) */
+.combat-row--inactive .combat-row__cell {
+    background-color: var(--color-surface);
+}
+
+/* Warning Cell (Local Override) */
+.combat-row__cell.combat-row__cell--warning {
+    /* Use composed background to ensure opacity for sticky columns while keeping the warning tint */
+    background: linear-gradient(var(--palette-warning-bg), var(--palette-warning-bg)), var(--color-surface) !important;
+    color: var(--palette-warning);
+}
+
+.combat-row-group.combat-row--active-dead .combat-row__cell.combat-row__cell--warning {
+    /* Slightly darker/different red on red background to be subtle but consistent */
+    background: var(--theme-dead-accent) !important; 
+    color: var(--theme-dead-content);
+}
+
+/* Warning Cell in Active Rows (Dead State Theme Alignment) */
+.combat-row-group.combat-row--active .combat-row__cell.combat-row__cell--warning {
+    /* Brighter reddish accent for dead state / low HP in active row */
+    background: var(--theme-dead-bg) !important; 
+    color: var(--theme-dead-content); /* light text */
+}
+
+
+.combat-table__th-button {
+    background: none;
+    border: none;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25rem;
+    padding: 0;
+    width: 100%;
+}
+
+.combat-table__empty {
+     padding: var(--spacing-xl);
+     text-align: center;
+     color: var(--color-text-muted);
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+}
+
+/* CombatRow */
+.combat-row {
+    border-bottom: 1px solid var(--color-border);
+}
+
+.combat-row--active {
+    background-color: var(--theme-active-bg);
+    color: var(--theme-active-content);
+    box-shadow: inset 0.25rem 0 0 var(--theme-active-accent);
+}
+
+.combat-row-group.combat-row--active-dead .combat-row__delete-btn {
+    color: #e6e8e6;
+    opacity: 0.7;
+}
+.combat-row-group.combat-row--active-dead .combat-row__delete-btn:hover {
+    color: var(--palette-white);
+    background: rgba(0,0,0,0.2);
+    opacity: 1;
+    border-radius: 0.25rem;
+}
+
+.combat-row--active .combat-row__delete-btn {
+    color: var(--theme-active-content);
+    opacity: 0.7;
+}
+
+.combat-row--active .combat-row__delete-btn:hover {
+    color: var(--palette-danger);
+    background: var(--color-surface);
+    opacity: 1;
+    border-radius: 0.25rem;
+}
+
+.combat-row--inactive {
+    background-color: var(--color-surface);
+}
+
+.combat-row--tie-breaker {
+    background-color: rgba(0,0,0,0.05);
+    opacity: 0.4;
+    cursor: default;
+}
+
+.combat-row--tie-breaker-active {
+    background-color: var(--color-surface);
+    opacity: 1;
+    cursor: pointer;
+}
+
+.combat-row__cell {
+    padding: var(--spacing-sm);
+}
+
+.combat-row__cell--warning {
+    background-color: var(--palette-warning-bg);
+    color: var(--palette-warning);
+    font-weight: bold;
+}
+
+.combat-row__delete-btn {
+    color: var(--color-danger);
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.combat-row__input-sm,
+.combat-row__input,
+.combat-row__round-input {
+    height: var(--input-height);
+    box-sizing: border-box;
+    display: flex; /* Helps align text inside if ever needed, mostly for structure */
+    align-items: center;
+    border: 1px solid var(--theme-secondary-misc);
+    padding: 0 0.25rem; /* Horizontal padding only, let line-height/height handle vertical */
+    border-radius: 0.125rem;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: normal; /* Reset line-height */
+}
+
+.combat-row__input-sm {
+    width: 1.75rem;
+    text-align: center;
+}
+
+.combat-row__status-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.125rem;
+    margin-top: 0.25rem;
+}
+
+.combat-row__status-pill {
+    font-size: 0.7em;
+    padding: 0.0625rem 0.25rem;
+    border-radius: 0.25rem;
+    background-color: var(--theme-secondary-misc);
+    color: var(--color-surface);
+    display: inline-block;
+}
+
+.combat-row__input {
+    width: 100%;
+}
+
+.combat-row__tie-icon {
+    font-size: 1.2em;
+}
+
+.combat-row__bold {
+    font-weight: bold;
+}
+
+/* Status Picker Portal */
+.status-picker__portal-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.status-picker__backdrop {
+    position: fixed;
+    inset: 0;
+}
+
+/* Combat Row Round Inputs */
+.combat-row__round-input {
+    width: 100%;
+}
+
+.combat-row__round-input--current {
+    opacity: 1;
+    color: inherit;
+}
+
+.combat-row__round-input--active-accent {
+    opacity: 1;
+    color: var(--color-text);
+    font-weight: bold;
+    background-color: var(--color-surface);
+    border: 1px solid var(--theme-accent-misc);
+}
+
+.combat-row__round-input--other {
+    opacity: 0.6;
+    color: var(--color-text-muted);
+    border-color: var(--color-border);
+}
+
+/* Future (ghosted) round columns: visible but de-emphasized */
+.combat-table__th--future-round {
+    opacity: 0.45;
+}
+
+.combat-row__cell--future-round {
+    opacity: 0.45;
+}
+
+.combat-row__round-input--future {
+    opacity: 1;
+    color: var(--color-text-muted);
+    border-color: var(--color-border);
+    background-color: transparent;
+}
+
+.combat-row__round-input:disabled {
+    cursor: not-allowed;
+}
+
+/* Modal */
+.modal {
+  background-color: var(--theme-secondary-container);
+  color: var(--theme-secondary-content);
+  padding: var(--spacing-lg);
+  border-radius: 0.5rem;
+  min-width: 18.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  box-shadow: 0 0.25rem 0.375rem rgba(0,0,0,0.1);
+  border: 1px solid var(--theme-secondary-misc);
+}
+
+.modal::backdrop {
+    background-color: rgba(0,0,0,0.5);
+}
+
+.modal-header {
+    margin: 0;
+}
+
+.modal-body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.modal-field {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+}
+
+.modal-label {
+    font-weight: bold;
+}
+
+
+.combat-row-group {
+    border-bottom: 1px solid var(--color-border);
+}
+
+/* Active Group (Unified) */
+.combat-row-group.combat-row--active {
+     background-color: var(--theme-active-bg);
+     color: var(--theme-active-content);
+     box-shadow: inset 0.25rem 0 0 var(--theme-active-accent);
+}
+
+.combat-row-group.combat-row--active .combat-row__cell {
+    background-color: var(--theme-active-bg);
+}
+
+.combat-row-group.combat-row--active-dead {
+     background-color: var(--theme-dead-bg);
+     color: var(--theme-dead-content);
+     box-shadow: inset 0.25rem 0 0 var(--theme-dead-accent);
+}
+
+.combat-row-group.combat-row--active-dead .combat-row__cell {
+    background-color: var(--theme-dead-bg);
+}
+
+.combat-row-group.combat-row--active-dead .combat-row__cell--current-round {
+    background-color: var(--theme-active-dead-bg);
+    color: var(--theme-dead-content);
+}
+
+.combat-row-group.combat-row--active .combat-row__cell--current-round {
+    /* Active Cell Highlight */
+    background-color: var(--theme-active-cell-bg);
+    color: var(--theme-accent-content);
+}
+
+.combat-row-group.combat-row--active-dead .combat-row__input,
+.combat-row-group.combat-row--active-dead .combat-row__input-sm,
+.combat-row-group.combat-row--active-dead .combat-row__round-input {
+    border-color: var(--theme-dead-accent);
+}
+
+.combat-row-group.combat-row--active .combat-row__input,
+.combat-row-group.combat-row--active .combat-row__input-sm,
+.combat-row-group.combat-row--active .combat-row__round-input {
+    border-color: var(--theme-active-accent);
+}
+
+.combat-row-group.combat-row--inactive .combat-row__cell {
+    background-color: var(--color-surface);
+}
+
+/* Update: Status Row Handling */
+.combat-row--main .combat-row__cell {
+    border-bottom: none;
+    padding-top: var(--spacing-xs);
+    padding-bottom: var(--spacing-xs);
+}
+
+/* If single row (no status), restore padding and border radius visual */
+.combat-row--main.combat-row--single .combat-row__cell {
+    padding-top: var(--spacing-sm);
+    padding-bottom: var(--spacing-sm);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.combat-row--status .combat-row__cell {
+    border-top: none;
+    padding-top: 0; 
+    padding-bottom: 0;
+    height: 1.5rem; /* Reduced height for better tandem look */
+    vertical-align: middle;
+}
+
+.combat-row--status .combat-row__cell {
+    padding-left: var(--spacing-xs);
+    padding-right: var(--spacing-xs);
+}
+
+/* Hover Effect: Underline row on hover */
+/* Must be after specific row styles to override colors */
+.combat-row-group:hover .combat-row__cell {
+    border-bottom-color: var(--theme-accent-misc);
+}
+
+
+.modal-select {
+    padding: var(--spacing-sm);
+    border-radius: 0.25rem;
+    border: 1px solid var(--theme-secondary-misc);
+    background-color: var(--color-surface); 
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--spacing-sm);
+    margin-top: var(--spacing-md);
+}
+
+.modal-checkbox-label {
+    display: flex; 
+    align-items: center; 
+    gap: var(--spacing-sm); 
+    cursor: pointer;
+}
+
+/* Footer */
+.app-footer {
+    margin-top: auto;
+    padding: var(--spacing-xs);
+    background-color: var(--theme-primary-container);
+    color: var(--theme-primary-content);
+    border-top: 1px solid var(--theme-primary-misc);
+    font-size: 0.75rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--spacing-sm);
+    flex-wrap: wrap;
+}
+
+.footer-github-link {
+    color: var(--theme-primary-content);
+    display: flex;
+    align-items: center;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+}
+
+.footer-github-link:hover {
+    opacity: 1;
+    color: var(--theme-accent-misc);
+}
+
+.disclaimer {
+    margin: 0;
+    font-size: 0.7rem;
+    opacity: 0.6;
+}
+
+/* Layout */
+.layout-root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.layout-main {
+  flex: 1;
+  padding: var(--spacing-md);
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.layout-controls {
+  padding: var(--spacing-md);
+  background: var(--theme-secondary-container);
+  color: var(--theme-secondary-content);
+  border-top: 1px solid var(--theme-secondary-misc);
+}
+
+/* Extracted Inline Styles */
+.combat-row__status-pill--future {
+  font-size: 0.7em;
+  padding: 0.0625rem 0.25rem;
+  border-radius: 0.25rem;
+  background-color: var(--color-text-muted);
+  color: #fff;
+  opacity: 0.5;
+  display: inline-block;
+}
+
+.command-bar__file-input {
+  display: none;
+}
+
+.combat-row__input-xs {
+  width: 3.5rem;
+  border: 1px solid var(--theme-secondary-misc);
+  padding: 0.125rem;
+  border-radius: 0.125rem;
+}
+
+.combat-row__hp-container {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.combat-row__init-mod-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+}
+
+.combat-row__separator {
+    color: var(--color-text-muted);
+    font-weight: bold;
+}
+
+.combat-table__merged-header {
+    display: flex;
+    justify-content: center;
+}
+
+.combat-row__hp-display {
+  width: 2rem;
+  text-align: center;
+  display: inline-block;
+}
+
+.combat-row__cell-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.combat-row__cell-content--round {
+    justify-content: center;
+    align-items: center; /* Center input horizontally */
+    display: flex; /* Ensure flex is preserved */
+    height: 100%; /* Fill cell for vertical align */
+}
+
+/* Ensure input group is centered */
+.combat-row__input-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.combat-row__pill-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.125rem;
+  max-width: 6rem;
+}
+
+/* Unified Container alignments */
+.combat-row__name-container,
+.combat-row__hp-container {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.combat-row__hp-container {
+    justify-content: space-between;
+}
+
+
+.combat-row__status-pill--small {
+    font-size: 0.7em;
+    padding: 0.0625rem 0.1875rem;
+    border-radius: 0.125rem;
+    background-color: var(--theme-accent-misc);
+    color: var(--color-surface);
+    cursor: help;
+}
+
+/* Landscape Warning */
+.landscape-warning {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(28, 33, 30, 0.95);
+  color: var(--color-text);
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--spacing-xl);
+  box-sizing: border-box;
+}
+
+.landscape-warning__content {
+  max-width: 25rem;
+}
+
+.landscape-warning__icon {
+  display: block;
+  font-size: 3rem;
+  margin-bottom: var(--spacing-md);
+  animation: rotate 2s infinite ease-in-out;
+}
+
+@keyframes rotate {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(-90deg); }
+  100% { transform: rotate(-90deg); }
+}
+
+@media (orientation: portrait) and (max-width: 48rem) {
+  .landscape-warning {
+    display: flex;
+  }
+}
+
+/* Tie Breaker Overlay */
+.combat-table__overlay {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(28, 33, 30, 0.9);
+  color: var(--color-text);
+  padding: var(--spacing-md);
+  text-align: center;
+  font-weight: bold;
+  font-size: var(--font-size-lg);
+  pointer-events: none;
+}
+
+.combat-table__container {
+  overflow-x: auto;
+  position: relative;
+}
+
+/* Updated Layout Classes for Version 2 (Status in Name, Button in Round) */
+
+.combat-row__name-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Override default status picker toggle for this context */
+.combat-row__cell-content--round .status-picker__toggle {
+    padding: 0;
+    width: 1.25rem;
+    height: 1.4rem; /* Match standardized input height */
+    min-height: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    font-weight: bold;
+    line-height: 1;
+    border-radius: 0.125rem;
+}
+
+/* Phase 3 & 4 Styles */
+
+/* Round Cell Layout override */
+.combat-row__cell-content--round {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--spacing-xs);
+}
+
+.combat-row__input-group {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--spacing-xs);
+}
+
+.combat-row__pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px;
+    min-height: 22px; /* Ensure space is reserved for min touch target */
+}
+
+/* Status Pill */
+.status-pill {
+    background: var(--theme-secondary-container);
+    border: 1px solid var(--theme-secondary-misc);
+    border-radius: 9999px;
+    padding: 2px; 
+    width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.status-pill:hover,
+.status-pill--highlight {
+    background: var(--theme-accent-container);
+    border-color: var(--theme-accent-content);
+    transform: scale(1.1);
+}
+
+.status-pill__icon {
+    width: 14px;
+    height: 14px;
+    color: var(--theme-secondary-content);
+}
+
+.status-pill--highlight .status-pill__icon {
+    color: var(--theme-accent-content);
+}
+
+/* Status Edit Menu */
+.status-edit-menu {
+    position: absolute;
+    background: var(--theme-primary-container);
+    border: 1px solid var(--palette-border);
+    padding: var(--spacing-sm);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    min-width: 150px;
+    z-index: 1000; /* floating overlay must be above sticky headers (z-index 100) */
+}
+
+
+.status-edit-menu__header {
+    font-weight: bold;
+    border-bottom: 1px solid var(--palette-border);
+    padding-bottom: var(--spacing-xs);
+    margin-bottom: var(--spacing-xs);
+    color: var(--theme-primary-content);
+}
+
+.status-edit-menu__row {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+}
+
+.status-edit-menu__input {
+    width: 60px;
+    padding: 4px;
+    background: var(--theme-secondary-container);
+    color: var(--theme-secondary-content);
+    border: 1px solid var(--palette-border);
+}
+
+.status-edit-menu__remove-btn {
+    background: var(--palette-danger);
+    color: var(--palette-white);
+    border: none;
+    padding: 6px;
+    border-radius: 2px;
+    cursor: pointer;
+    margin-top: var(--spacing-xs);
+}
+
+/* Status Picker Refactor */
+.status-picker__dropdown {
+    width: 320px;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    overflow: hidden;
+}
+
+.status-picker__tabs {
+    display: flex;
+    border-bottom: 1px solid var(--palette-border);
+    background: rgba(0,0,0,0.2);
+}
+
+.status-picker__tab {
+    flex: 1;
+    background: transparent;
+    border: none;
+    padding: var(--spacing-sm);
+    color: var(--color-text-muted);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+}
+
+.status-picker__tab--active {
+    color: var(--color-text);
+    border-bottom-color: var(--theme-accent-container);
+    background: rgba(255,255,255,0.05);
+}
+
+.status-picker__content {
+    padding: var(--spacing-sm);
+}
+
+.status-picker__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-xs);
+    max-height: 250px;
+    overflow-y: auto;
+}
+
+.status-picker__preset-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    padding: var(--spacing-xs);
+    background: var(--theme-secondary-container);
+    border: 1px solid var(--palette-border);
+    border-radius: 4px;
+    cursor: pointer;
+    height: 70px;
+    color: var(--theme-secondary-content);
+}
+
+.status-picker__preset-btn:hover {
+    background: var(--theme-accent-container);
+    color: var(--theme-accent-content);
+}
+
+.status-picker__preset-icon {
+    width: 24px;
+    height: 24px;
+}
+
+.status-picker__preset-label {
+    font-size: 0.7rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+}
+
+.status-picker__custom-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.status-picker__icon-selector {
+    border: 1px solid var(--palette-border);
+    padding: var(--spacing-xs);
+    max-height: 150px;
+    overflow-y: auto;
+    background: rgba(0,0,0,0.1);
+}
+
+/* Icon Picker */
+.icon-picker {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(32px, 1fr));
+    gap: 4px;
+}
+
+.icon-picker__option {
+    padding: 6px;
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    cursor: pointer;
+    color: var(--theme-secondary-content);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.icon-picker__option:hover {
+    background: rgba(255,255,255,0.1);
+}
+
+.icon-picker__option--selected {
+    background: var(--theme-accent-container);
+    color: var(--theme-accent-content);
+}
+
+.icon-picker__option svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* Combat Row Index Column */
+.combat-row__index-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    line-height: 1;
+}
+
+.combat-row__index-sub {
+    font-size: 0.75em;
+    color: var(--color-text-muted);
+}

@@ -1,0 +1,57 @@
+{
+  "name": "ttrpg-combat-manager",
+  "version": "1.0.0",
+  "description": "A lightweight, robust, and accessible combat tracker for Tabletop RPGs, built with modern web standards.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "build": "node scripts/build.mjs",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "gate": "npm run lint && npm run test:coverage",
+    "lint": "eslint . --fix",
+    "deploy": "npm run build && wrangler pages deploy public",
+    "preview": "npm run build && wrangler pages dev public",
+    "prepare": "husky"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@eslint/compat": "2.0.1",
+    "@eslint/eslintrc": "3.3.3",
+    "@eslint/js": "9.39.2",
+    "@testing-library/dom": "10.4.1",
+    "@testing-library/react": "16.3.2",
+    "@types/react": "19.2.10",
+    "@types/react-dom": "19.2.3",
+    "@typescript-eslint/eslint-plugin": "8.54.0",
+    "@typescript-eslint/parser": "8.54.0",
+    "@vitest/coverage-v8": "4.0.18",
+    "esbuild": "0.27.2",
+    "eslint": "9.39.2",
+    "eslint-config-prettier": "10.1.8",
+    "eslint-plugin-import": "2.32.0",
+    "eslint-plugin-promise": "7.2.1",
+    "eslint-plugin-react": "7.37.5",
+    "eslint-plugin-react-hooks": "7.0.1",
+    "eslint-plugin-simple-import-sort": "12.1.1",
+    "eslint-plugin-unused-imports": "4.3.0",
+    "globals": "17.2.0",
+    "husky": "9.1.7",
+    "jsdom": "27.4.0",
+    "typescript": "5.9.3",
+    "vitest": "4.0.18",
+    "wrangler": "4.61.1"
+  },
+  "dependencies": {
+    "@heroicons/react": "2.2.0",
+    "mobx": "6.15.0",
+    "mobx-react-lite": "4.1.1",
+    "preact": "10.28.2"
+  }
+}

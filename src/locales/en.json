@@ -1,0 +1,112 @@
+{
+  "app": {
+    "title": "TTRPG Combat Manager"
+  },
+  "commandBar": {
+    "newCombat": "New Combat",
+    "turnLabel": "Turn:",
+    "previousTurn": "Previous",
+    "nextTurn": "Next",
+    "undo": "Undo",
+    "redo": "Redo",
+    "save": "Save",
+    "load": "Load",
+    "options": "Options"
+  },
+  "spawnControls": {
+    "title": "Spawn Controls",
+    "spawnHero": "Spawn Hero",
+    "heroNamePlaceholder": "Hero Name",
+    "heroNameDefault": "Hero 1",
+    "heroInitPlaceholder": "Init",
+    "initLabel": "Init roll+mod",
+    "add": "Add",
+    "spawnMonster": "Spawn Monster",
+    "monsterNamePlaceholder": "Name",
+    "monsterNameDefault": "Monster",
+    "hpPlaceholder": "HP",
+    "hpLabel": "HP",
+    "initModPlaceholder": "Init Mod",
+    "initModLabel": "Init Mod",
+    "countPlaceholder": "Count (1)",
+    "countLabel": "Count"
+  },
+  "optionsModal": {
+    "title": "Options",
+    "initiativeDie": "Initiative Die",
+    "tieBreakerRule": "Tie Breaker Rule",
+    "tieBreakerRules": {
+      "modifier": "Modifier (Higher First)",
+      "name": "Name (A-Z)"
+    },
+    "close": "Close"
+  },
+  "combatTable": {
+    "ariaLabel": "Combatants",
+    "header": {
+      "delete": "Delete",
+      "order": "#",
+      "initiative": "Init",
+      "initMod": "Init + Mod",
+      "name": "Name",
+      "status": "Status",
+      "hp": "HP",
+      "startingHp": "Starting HP",
+      "maxHp": "Max HP",
+      "modifier": "Mod",
+      "currentMax": "Curr / Max",
+      "round": "Round"
+    },
+    "indicators": {
+        "up": "↑",
+        "down": "↓",
+        "ascending": "ascending",
+        "descending": "descending"
+    },
+    "emptyState": "No combatants. Spawn some heroes or monsters to begin.",
+    "hpInputPlaceholder": "-5-11+4",
+    "deleteRowTitle": "Delete",
+    "removeStatusConfirm": "Remove status {name}?",
+    "turnAnnouncement": "Round {round}, Turn for {name}"
+  },
+  "tieBreaker": {
+    "overlay": "Click on rows in the desired turn order.",
+    "autoResolve": "Auto Resolve Remaining"
+  },
+  "status": {
+    "duration": "Dur",
+    "rounds": "rnds",
+    "remove": "Remove",
+    "customStatus": "Custom",
+    "presetStatus": "Presets",
+    "error": {
+      "alreadyApplied": "Status '{name}' is already active."
+    }
+  },
+  "landscapeWarning": {
+    "message": "Please rotate your device to landscape mode for the best experience."
+  },
+  "statusPicker": {
+    "iconLabel": "Icon",
+    "add": "Add Status",
+    "namePlaceholder": "Status Name",
+    "durationPlaceholder": "Rounds"
+  },
+  "statsModal": {
+    "title": "Battle Statistics",
+    "averagePerRound": "Avg/Round",
+    "total": "Total",
+    "heroesTaken": "Heroes (Taken)",
+    "monstersTaken": "Monsters (Taken)",
+    "records": "Records",
+    "mostDamageTaken": "Most Damage Taken",
+    "none": "None",
+    "unknown": "Unknown",
+    "byCombatant": "By Combatant",
+    "close": "Close",
+    "faction": "Faction"
+  },
+  "statusEditMenu": {
+      "durationLabel": "Dur:"
+  }
+}
